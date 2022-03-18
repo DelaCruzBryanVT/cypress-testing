@@ -8,12 +8,14 @@ import { LoginComponent } from './components/login/login.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ContactsComponent
+    ContactsComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

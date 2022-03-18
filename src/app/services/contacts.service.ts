@@ -2,7 +2,6 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 import { Injectable } from "@angular/core";
 import * as globalVariables from '../../environments/global-variables';
 
-
 @Injectable()
 export class ContactService {
 
@@ -48,6 +47,11 @@ export class ContactService {
             .catch(this.ocurredAnError);
     }
 
+    getAlloptions(){
+        let optionsURL = "https://jsonplaceholder.typicode.com/posts";
+        return  this.http.get(optionsURL).toPromise().then(resp => resp.json())
+        .catch(this.ocurredAnError);
+    }
 
     private ocurredAnError(error:any){
         console.log('Ocurrio un error en el llamado HTTP ', error.message);

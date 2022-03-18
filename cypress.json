@@ -1,0 +1,17 @@
+{
+    "experimentalStudio": true,
+    "baseUrl": "http://localhost:4200/",
+    "reporter": "mochawesome",
+    "reporterOptions": {
+      "charts": true,
+      "overwrite": false,
+      "html": false,
+      "json": true,
+      "reportDir": "cypress/report"
+    },
+    "env": {
+      "contacts_url": "/api/contacts",
+      "server_url": "http://localhost:4200/"
+    }
+  }
+  

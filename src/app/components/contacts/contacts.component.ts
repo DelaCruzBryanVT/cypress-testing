@@ -1,9 +1,9 @@
 import { ContactClass } from './../../models/contact-model-class';
 import { ContactService } from './../../services/contacts.service';
-import { Observable } from 'rxjs';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { OptionsClass } from 'src/app/models/options-model-class';
 
 @Component({
     selector: 'app-home',
@@ -23,18 +23,18 @@ import { Component, OnInit } from '@angular/core';
 export class ContactsComponent implements OnInit {
     formContact!: FormGroup;
     contacts!: ContactClass[];
+    options!: OptionsClass[];
     contact: ContactClass;
     response: Object;
     status: string;
     currentId: number;
     search: string;
     range: string;
-
-    position: number =1;
-
+    position: number = 1;
+    filterText:string = "";
 
     constructor(private _contactService: ContactService) {
-      
+
         this.contact = new ContactClass();
         this.response = {};
         this.status = '';
@@ -46,6 +46,7 @@ export class ContactsComponent implements OnInit {
 
     ngOnInit() {
         this.listOfContacts();
+        this.listOptions();
         this.initForm();
     }
 
@@ -57,6 +58,10 @@ export class ContactsComponent implements OnInit {
         setTimeout(() => this.response = {}, 2000);
     }
 
+    listOptions() {
+        this._contactService.getAlloptions().then(res => this.options = res)
+        setTimeout(() => this.response = {}, 2000);
+    }
 
     showContact(status: string, id?: number) {
         this.status = status;
@@ -105,9 +110,6 @@ export class ContactsComponent implements OnInit {
         this.showContact('');
     }
 
-
-
-
     editContact(id: number) {
         this.showContact('edit');
         this.currentId = id;
@@ -115,7 +117,6 @@ export class ContactsComponent implements OnInit {
             .then(contact => this.formContact.patchValue(contact),
                 error => console.error(`Error: ${error}`))
     }
-
 
     deleteContact(id: number) {
         this._contactService.deleteContact(id)
@@ -125,7 +126,7 @@ export class ContactsComponent implements OnInit {
             });
     }
 
-    setPosition(position: number){
+    setPosition(position: number) {
         this.position = position;
     }
 
