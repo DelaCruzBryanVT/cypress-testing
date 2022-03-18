@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card w-5 mt-5">
+        <div class="card-header">
+          LOGIN
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formLogin" (submit)="login()" id="form">
+            <div class="form-fgroup mt-2">
+              <label for="user">User*</label>
+              <input type="text" class="form-control" name="user"  formControlName="user">
+              <div *ngIf="!formLogin.controls['user'].valid && formLogin.controls['user'].touched"
+              class="mt-1">
+              <span class="text-danger" *ngIf="formLogin.controls['user'].errors!['required']">
+                The field is required.
+              </span>
+              <span class="text-danger" *ngIf="formLogin.controls['user'].errors!['pattern']">
+                The field must be a minimum of 4 characters.
+              </span>
+            </div>
+            </div>
+      
+            <div class="form-fgroup mt-2">
+              <label for="pass">Password*</label>
+              <input type="password" class="form-control" name="password"  formControlName="password">
+              <div *ngIf="!formLogin.controls['password'].valid && formLogin.controls['password'].touched"
+              class="mt-1">
+              <span class="text-danger" *ngIf="formLogin.controls['password'].errors!['required']">
+                The field is required.
+              </span>
+              <span class="text-danger" *ngIf="formLogin.controls['password'].errors!['pattern']">
+                The field must be a minimum of 4 characters.
+              </span>
+            </div>
+            </div>
+      
+            <div class="form-group mt-2">
+              <button type="submit" class="btn btn-primary w-100 " [disabled]="!formLogin.valid">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
