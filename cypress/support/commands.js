@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', () => {
+    cy.get(':nth-child(1) > .form-control').clear();
+    cy.get(':nth-child(1) > .form-control').clear();
+    cy.get(':nth-child(1) > .form-control').type('root');
+    cy.get(':nth-child(2) > .form-control').clear();
+    cy.get(':nth-child(2) > .form-control').type('root');
+    cy.get(".btn")
+        .should("not.be.disabled")
+        .click()
+})

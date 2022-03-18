@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit,AfterViewInit {
     }
     let user = new UserClass(formData.user, formData.password)
     localStorage.setItem('sessionData', JSON.stringify(formData));
-    console.log('ir a contacts')
     this._router.navigate(['/contacts']);
 
   }
